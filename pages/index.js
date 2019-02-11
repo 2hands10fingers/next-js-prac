@@ -1,73 +1,103 @@
 import Layout from '../components/MyLayout.js'
 import Link from 'next/link'
-const {Component} = React 
+// import "../styles/index.sass"
+const {Component} = React
+// const PostLink = ({ post }) => (
+//   <li>
+//     <Link as={`/p/${post.id}`} href={`/post?title=${post.title}`}>
+//       <a>{post.title}</a>
+//     </Link>
+//     <style jsx>{`
+//       h1, a {
+//         font-family: "Arial";
+//       }
 
-function getPosts () {
-  return [
-    { id: 'hello-nextjs', title: 'Hello Next.js'},
-    { id: 'learn-nextjs', title: 'Learn Next.js is awesome'},
-    { id: 'deploy-nextjs', title: 'Deploy apps with ZEIT'},
-  ]
-}
+//       ul {
+//         padding: 0;
+//       }
 
-const PostLink = ({ post }) => (
-  <li>
-    <Link as={`/p/${post.id}`} href={`/post?title=${post.title}`}>
-      <a>{post.title}</a>
-    </Link>
-    <style jsx>{`
-      h1, a {
-        font-family: "Arial";
-      }
+//       li {
+//         list-style: none;
+//         margin: 5px 0;
+//       }
 
-      ul {
-        padding: 0;
-      }
+//       a {
+//         text-decoration: none;
+//         color: blue;
+//       }
 
-      li {
-        list-style: none;
-        margin: 5px 0;
-      }
-
-      a {
-        text-decoration: none;
-        color: blue;
-      }
-
-      a:hover {
-        opacity: 0.6;
-      }
-    `}</style>
-  </li>
-)
+//       a:hover {
+//         opacity: 0.6;
+//       }
+//     `}</style>
+//   </li>
+// )
 
 export default class extends Component {
   constructor() {
     super()
     this.state = {
-      everything: ['universe', 'philosophy', 'eatthis'],
-      num: 0
+      start: true
     }
   }
 
-  changer = () => {
-    this.state.num  <= 1 ? 
-      this.setState({num: this.state.num + 1}) :
-      this.setState({num: 0}) 
-  }
+  pressStart = () => {
+    this.setState({ start: !this.state.start})
+}
+
 
   render() {
     return (
-      <Layout>
-    <h1>My Blog</h1>
-    <button onClick={this.changer}>Change</button>
-    <h2>{this.state.everything[this.state.num]}</h2>
-    <ul>
-      {getPosts().map((post) => (
-        <PostLink key={post.id} post={post}/>
-      ))}
-    </ul>
-  </Layout>
+      <React.Fragment>
+
+      <h1>Glotacosm</h1>
+      <blink>
+      <button className="start-button blink"
+        style={{display: `${!this.state.start && "none"}`}} 
+        onClick={this.pressStart}>PRESS ANYTHING TO CONTINUE
+      </button>
+      </blink>
+      <style jsx>{`
+      .start-button {
+        display: block;
+        margin: 0 auto;
+      }
+      h1 {
+        font-family: 'Press Start 2P';
+        text-align: center;
+        font-size: 75px;
+        text-transform: uppercase;
+      }
+
+      blink {
+        -webkit-animation: 2s linear infinite condemned_blink_effect; // for android
+        animation: 2s linear infinite condemned_blink_effect;
+    }
+    @-webkit-keyframes condemned_blink_effect { // for android
+        0% {
+            visibility: hidden;
+        }
+        50% {
+            visibility: hidden;
+        }
+        100% {
+            visibility: visible;
+        }
+    }
+    @keyframes condemned_blink_effect {
+        0% {
+            visibility: hidden;
+        }
+        50% {
+            visibility: hidden;
+        }
+        100% {
+            visibility: visible;
+        }
+    }
+      `}</style>
+      <Layout menu={this.state.start}/>
+      </React.Fragment>
     )
   }
   

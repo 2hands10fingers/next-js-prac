@@ -15,6 +15,8 @@ app.prepare()
     app.render(req, res, actualPage, queryParams)
   })
 
+  // server.use('/static', express.static('/next'))
+
   server.get('*', (req, res) => {
     return handle(req, res)
   })
