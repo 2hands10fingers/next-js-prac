@@ -1,6 +1,11 @@
 import Layout from '../components/MyLayout.js'
+import Modal from '../components/Modal.js'
 import Link from 'next/link'
 // import "../styles/index.sass"
+
+const font = "'Press Start 2P';"
+
+
 const {Component} = React
 // const PostLink = ({ post }) => (
 //   <li>
@@ -49,25 +54,36 @@ export default class extends Component {
   render() {
     return (
       <React.Fragment>
-
+      <div className="portfolio--wrapper">
       <h1>Glotacosm</h1>
       <blink>
       <button className="start-button blink"
         style={{display: `${!this.state.start && "none"}`}} 
-        onClick={this.pressStart}>PRESS ANYTHING TO CONTINUE
+        onClick={this.pressStart}>
+        Click Here to Continue
       </button>
       </blink>
       <style jsx>{`
       .start-button {
         display: block;
         margin: 0 auto;
+        font-family: ${font}
+        text-transform: uppercase;
+        border: none;
+        color: white;
+        background-color: transparent;
+        text-shadow: 1px 10px 0px black;
       }
       h1 {
-        font-family: 'Press Start 2P';
+        font-family: ${font}
         text-align: center;
         font-size: 75px;
+        color: white;
         text-transform: uppercase;
+        text-shadow: 1px 5px 0px black;
       }
+
+
 
       blink {
         -webkit-animation: 2s linear infinite condemned_blink_effect; // for android
@@ -97,6 +113,8 @@ export default class extends Component {
     }
       `}</style>
       <Layout menu={this.state.start}/>
+      <Modal />
+      </div>
       </React.Fragment>
     )
   }

@@ -1,8 +1,8 @@
-import Header from './Header'
 import Sidebar from './Sidebar'
+import Head from 'next/head'
+// import bgImg from '../static/images/bg.jpg'
 import '../styles/index.sass'
 import '../styles/misc.css'
-import Head from 'next/head'
 
 const layoutStyle = {
   margin: 20,
@@ -12,18 +12,18 @@ const layoutStyle = {
 
 const Layout = (props) => (
   <div>
-    {/* <Header /> */}
     <Head>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
       <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet" />
     </Head>
-    <Sidebar menu={props.menu}/>
-    <style jsx>{`
-      body {
-        background-color: darkseagreen;
-      }
+    <style jsx global>{`
+    body {
+      background: url('http://i.imgur.com/F0gBD6c.png') no-repeat;
+    }
     
-    `}
-    </style>
+  `}
+  </style>
+    <Sidebar menu={props.menu}/>
     {props.children}
   </div>
 )
