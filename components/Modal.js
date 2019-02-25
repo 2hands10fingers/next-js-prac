@@ -1,27 +1,25 @@
-const {Component} = React
-class Modal extends Component {
-  constructor() {
-    super()
-    this.state = {
-      triggered: false
+import React from "react";
+
+const Modal = ({ handleClose, show, content }) => {
+  return (
+    <div className={`${show ? "modal display-block" : "modal display-none"}`}>
+     <button onClick={handleClose}>X</button>
+      <section className="modal-main">
+        {content}
+      </section>
+      <style jsx>{`
+    
+    .modal-main {
+      background-color: #483d8b;
+      padding: 1.5rem;
     }
-  }
+  
+  
+  `}
+  </style>
+    </div>
+ 
+  )
+};
 
-  render() {
-    const { triggered } = this.state
-    return (
-      <div className="modal--container">
-        HELLO
-        <style jsx>{`
-        .modal--container {
-          opacity: ${!triggered ? 0 : 1}
-        }
-      `}</style>
-      </div>
-    )
-  }
-
-
-}
-
-export default Modal;
+export default Modal

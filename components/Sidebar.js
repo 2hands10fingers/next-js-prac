@@ -1,5 +1,9 @@
-import Link from 'next/link'
+
 const { Component } = React
+import Modal from '../components/Modal'
+import Contact from '../components/Contact'
+import Work from '../components/Work'
+import Hire from '../components/Hire'
 
 export default class Sidebar extends Component {
 
@@ -7,43 +11,49 @@ export default class Sidebar extends Component {
         super()
         this.state = {
             start: false,
-            haschildren: false
+            haschildren: false,
+            show: false,
+            type: "",
+            currentPage: undefined,
+            pages: {
+                "contact": <Contact />,
+                "work": <Work />,
+                "hire": <Hire />
+              }
         }
     }
 
     links = () => {
         return [
-            { name: "Home", url: "/" },
             { name: "Work", url: "/work", children: ["Built", "Maintained"] },
             { name: "Contact", url: "/contact" },
             { name: "Hire", url: "/hire"}
         ]
     }
 
-    subMenuToggler = () => {
-        console.log('HI')
-        this.setState({haschildren: !this.state.haschildren})}
-
-    // menuHover = () => {
-
-    // }
-
-    blaher = (link) => (
-        <li className={`${link.children && "sidebar--has-children"}`} onClick={link.children && this.subMenuToggler}>
-        <a className="sidebar--link">{link.name}</a>
+    subMenuToggler = () => this.setState({haschildren: !this.state.haschildren})
+    
+    hideModal = () => this.setState({ show: false, type: "" });
+    
+    setPage = thePage => this.setState({currentPage: thePage, show: true })
+    
+    blaher = link => (
+        <li className={`${link.children && "sidebar--has-children"}`} 
+            onClick={link.children && this.subMenuToggler}>
+        <div className="sidebar--link" onClick={() => this.setPage(link.name.toLowerCase())}>{link.name}</div>
         <ul 
           className={`sidebar--links`}
           >
             {link.children && link.children.map(childLink => (
-                <Link 
+                <div 
                     key={childLink} 
                     href={`${link.url}?sort=${childLink.toLowerCase()}`}>
                     <li>
-                        <a className="sidebar--link__child">
+                        <div className="sidebar--link__child">
                             {childLink}
-                        </a>
+                        </div>
                     </li>
-                </Link>
+                </div>
             ))}
         </ul>
     </li>
@@ -55,9 +65,10 @@ export default class Sidebar extends Component {
                 {this.links().map(link => (
                     <React.Fragment>
                         {!link.children ? 
-                        <Link key={link.url} href={link.url}>
+                        <div key={link} onClick={() => this.setPage(link.name.toLowerCase())} >
                             {this.blaher(link)}
-                        </Link> :
+                        </div>
+                         :
                             this.blaher(link)
                         }
                       
@@ -119,9 +130,48 @@ export default class Sidebar extends Component {
                             .sidebar--link__child {
                                 font-size: 18px;
                             }
+
+                            .modal {
+                                position: fixed;
+                                top: 0;
+                                left: 0;
+                                width:100%;
+                                height: 100%;
+                                background: rgba(0, 0, 0, 0.6);
+                              }
+                              
+                              .work--container {
+                                position: absolute;
+                              }
+                              .modal-main {
+                                position:fixed;
+                                background: white;
+                                right: 0;
+                                bottom: 0;
+                                width: 80%;
+                                height: 880px;
+                                top:50%;
+                                left:50%;
+                                transform: translate(-50%,-50%);
+                                overflow:  auto;
+                              }
+                              
+                              .display-block {
+                                display: block;
+                              }
+                              
+                              .display-none {
+                                display: none;
+                              }
                         
                         `}</style>
+                        <Modal 
+                            show={this.state.show} 
+                            handleClose={this.hideModal}
+                            content={this.state.pages[this.state.currentPage]}
+                        />
                     </React.Fragment>
+                    
                 ))}
             </ul>
         )

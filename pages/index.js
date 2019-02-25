@@ -1,7 +1,6 @@
 import Layout from '../components/MyLayout.js'
-import Modal from '../components/Modal.js'
+// import Modal from '../components/Modal.js'
 import Link from 'next/link'
-// import "../styles/index.sass"
 
 const font = "'Press Start 2P';"
 
@@ -46,9 +45,8 @@ export default class extends Component {
     }
   }
 
-  pressStart = () => {
-    this.setState({ start: !this.state.start})
-}
+  pressStart = () => this.setState({ start: !this.state.start})
+
 
 
   render() {
@@ -83,8 +81,6 @@ export default class extends Component {
         text-shadow: 1px 5px 0px black;
       }
 
-
-
       blink {
         -webkit-animation: 2s linear infinite condemned_blink_effect; // for android
         animation: 2s linear infinite condemned_blink_effect;
@@ -112,8 +108,8 @@ export default class extends Component {
         }
     }
       `}</style>
+
       <Layout menu={this.state.start}/>
-      <Modal />
       </div>
       </React.Fragment>
     )
