@@ -27,7 +27,7 @@ export default class Sidebar extends Component {
         return [
             { name: "Work", url: "/work", children: ["Built", "Maintained"] },
             { name: "Contact", url: "/contact" },
-            { name: "Hire", url: "/hire"}
+            { name: "Hire", url: "/hire", background: "// https://www.glotacosm.com/orientpixel-bg.jpg" }
         ]
     }
 
@@ -61,6 +61,7 @@ export default class Sidebar extends Component {
 
     render() {
         return (  
+            <React.Fragment>
             <ul className="sidebar" style={{display: `${this.props.menu ? "none" : "initial" }`}}>
                 {this.links().map(link => (
                     <React.Fragment>
@@ -101,7 +102,7 @@ export default class Sidebar extends Component {
                                 background-color: lightgreen;
                             }
 
-                            li {
+                            .sidebar li {
                                 cursor: pointer;
                                 font-family: 'Press Start 2P';
                                 text-align: center;
@@ -114,7 +115,7 @@ export default class Sidebar extends Component {
                                 text-shadow: 1px 6px 0px black;
                             }
 
-                            li:hover {
+                            .sidebar li:hover {
                                 background-color: green;
                             }
 
@@ -165,15 +166,23 @@ export default class Sidebar extends Component {
                               }
                         
                         `}</style>
-                        <Modal 
-                            show={this.state.show} 
-                            handleClose={this.hideModal}
-                            content={this.state.pages[this.state.currentPage]}
-                        />
+ 
                     </React.Fragment>
+   
                     
                 ))}
             </ul>
+        
+        <React.Fragment>
+        <Modal 
+                show={this.state.show} 
+                handleClose={this.hideModal}
+                content={this.state.pages[this.state.currentPage]}
+                pageClass={this.state.currentPage}
+            />
+        </React.Fragment>
+</React.Fragment>
         )
+        
     }
 }

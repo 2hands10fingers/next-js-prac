@@ -1,41 +1,10 @@
 import Layout from '../components/MyLayout.js'
-// import Modal from '../components/Modal.js'
-import Link from 'next/link'
+import Printer from '../components/Printer';
 
 const font = "'Press Start 2P';"
 
 
 const {Component} = React
-// const PostLink = ({ post }) => (
-//   <li>
-//     <Link as={`/p/${post.id}`} href={`/post?title=${post.title}`}>
-//       <a>{post.title}</a>
-//     </Link>
-//     <style jsx>{`
-//       h1, a {
-//         font-family: "Arial";
-//       }
-
-//       ul {
-//         padding: 0;
-//       }
-
-//       li {
-//         list-style: none;
-//         margin: 5px 0;
-//       }
-
-//       a {
-//         text-decoration: none;
-//         color: blue;
-//       }
-
-//       a:hover {
-//         opacity: 0.6;
-//       }
-//     `}</style>
-//   </li>
-// )
 
 export default class extends Component {
   constructor() {
@@ -53,7 +22,12 @@ export default class extends Component {
     return (
       <React.Fragment>
       <div className="portfolio--wrapper">
-      <h1>Glotacosm</h1>
+      <h1 className="portfolio--header">
+        <Printer text={"Glotacosm".split("")}/>
+      </h1>
+      <h2 className="portfolio--header">
+        <Printer text={"Web Development PORTFOLIO".split("")}/>
+      </h2>
       <blink>
       <button className="start-button blink"
         style={{display: `${!this.state.start && "none"}`}} 
@@ -62,6 +36,7 @@ export default class extends Component {
       </button>
       </blink>
       <style jsx>{`
+      
       .start-button {
         display: block;
         margin: 0 auto;
@@ -79,6 +54,16 @@ export default class extends Component {
         color: white;
         text-transform: uppercase;
         text-shadow: 1px 5px 0px black;
+      }
+
+      h2 {
+        font-family: ${font}
+        text-align: center;
+        font-size: 30px;
+        color: white;
+        text-transform: uppercase;
+        text-shadow: 1px 5px 0px black;
+
       }
 
       blink {
@@ -107,6 +92,22 @@ export default class extends Component {
             visibility: visible;
         }
     }
+    @media screen and (max-width: 767px) {
+      .portfolio--header {
+        font-size: 57px;
+      }
+    }
+
+    @media screen and (max-width: 567px) {
+      .portfolio--header {
+        font-size: 32px;
+      }
+
+      body {
+        background-position: left;
+      }
+    }
+     
       `}</style>
 
       <Layout menu={this.state.start}/>
