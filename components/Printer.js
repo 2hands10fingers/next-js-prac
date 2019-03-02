@@ -52,7 +52,7 @@ class Printer extends Component {
         this.setState(state => ({
         theText:  state.theText + letter 
         }));
-      }, 50 * index)
+      }, 30 * index)
     );
   }
 

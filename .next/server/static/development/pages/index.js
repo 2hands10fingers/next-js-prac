@@ -597,7 +597,7 @@ function (_Component) {
               theText: state.theText + letter
             };
           });
-        }, 50 * index);
+        }, 30 * index);
       });
     }
   }, {
