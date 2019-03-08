@@ -10,9 +10,9 @@ class PageSelector extends Component {
 
   render() {
     return (
-      <React.Fragment>
+      <>
         {this.state.page}
-      </React.Fragment>
+      </>
     )
   }
 }

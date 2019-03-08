@@ -2,6 +2,8 @@ import Sidebar from './Sidebar'
 import Head from 'next/head'
 import '../styles/index.sass'
 import '../styles/misc.css'
+import {MahContext} from "./Provider";
+
 const {Component} = React;
 const layoutStyle = {
   margin: 20,
@@ -40,11 +42,34 @@ class Layout extends Component {
         width: 100vw;
         overflow: hidden;
       }
+
+      .points {
+        position: absolute;
+        top: 0;
+        right: 0;
+        color: #76e680;
+        font-family: 'Press Start 2P';
+        text-shadow: 1px 2px 12px black;
+        font-size: 20px;
+        padding: 1rem;
+      }
+
+      .points-txt {
+        font-size: 15px;
+      }
       
     `}
     </style>
+    <MahContext>
+      {context => (
+        <div className="points">
+          {context.data.points }<span className="points-txt"> points</span>
+        </div>
+      )}
+    </MahContext>
       <Sidebar menu={this.props.menu} />
-    </div>)
+    </div>
+    )
     }
   }
 

@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import ContentBlock from './ContentBlock';
 import Printer from './Printer';
+import { MahContext } from "./Provider";
 
 
 let text = "Accumulating years of experience in the digital marketing field and in creative branding, GLOTACOSM was born. The creative initiative led by Antonio Nogueras is the nuanced response to highly creative branding and marketing. It seeks to build creative infrastructures and execute complex marketing tasks that require a combination of different creative skills.^ GLOTACOSM seeks to make a brainstorm look like a controlled F5 Tornado in the eye of a hurricane. It yearns to approach creative heights where consumers never thought possible. And while you’re wondering, its name derives from Latin and Greek to mean “World of Language”. At least it’s easier to pronounce than Schlotsky’s on the first try."
@@ -41,6 +42,10 @@ class Hire extends Component {
   render() {
     return (
       <section className="hire--wrapper">
+      <MahContext>
+        { context => (
+
+        <>
         <h1>Hire Me</h1>
         <h2>~ The Legend ~</h2>
         <div className="hire--skills">     
@@ -53,6 +58,12 @@ class Hire extends Component {
        
    
         <ContentBlock contentClass={"main--info"}>
+                  <div className="hire--text">
+          <p>
+            <Printer animate text={text.split("")}/>
+          </p>
+            
+          </div>
           <ContentBlock classes={"profile"}>
             <img src="http://www.glotacosm.com/pixelme.png" alt="profile-shot" className="hire--profile-image" />
             <style jsx global>{`
@@ -94,6 +105,8 @@ class Hire extends Component {
 
             .hire--profile-image {
               height: 210px;
+              position: relative;
+              top: 12px;
             }
 
             .main--info {
@@ -217,18 +230,13 @@ class Hire extends Component {
       
     </style>
           </ContentBlock>
-          <div className="hire--text">
-          <p>
-            <Printer text={text.split("")}/>
-          </p>
-            
-          </div>
+   
           </ContentBlock>
           <div className="hire--skills-wrapper">
             <h2>~ My Book of Spells ~</h2>
           
           <ul className="hire--skills-container">
-            {this.skills().map( skill => <li className="hire--skill" key={skill}>{skill}</li>)}
+            {this.skills().map( skill => <li className="hire--skill" onClick={context.updatePoints}key={skill}>{skill}</li>)}
           </ul>
         </div>
         </div>
@@ -238,6 +246,9 @@ class Hire extends Component {
           <div className="button--link">
             <a target="_blank" href="https://github.com/2hands10fingers">Visit</a>
           </div>
+          </>
+            )}
+          </MahContext>
       </section>
     )
   }

@@ -1,26 +1,27 @@
 import Layout from '../components/MyLayout.js'
 import Printer from '../components/Printer';
+import MyProvider from "../components/Provider";
 
 const font = "'Press Start 2P';"
 
 
 const {Component} = React
 
+
+
 export default class extends Component {
-  constructor() {
-    super()
-    this.state = {
-      start: true
-    }
+  constructor(props) {
+    super(props)
+    this.state = { start: true }
   }
 
   pressStart = () => this.setState({ start: !this.state.start})
 
-
-
   render() {
     return (
-      <React.Fragment>
+      <MyProvider>
+      <>
+        
       <div className="portfolio--wrapper">
       <h1 className="portfolio--header">
         <Printer text={"Glotacosm".split("")}/>
@@ -55,7 +56,7 @@ export default class extends Component {
         text-transform: uppercase;
         text-shadow: 1px 5px 0px black;
       }
-
+      
       h2 {
         font-family: ${font}
         text-align: center;
@@ -63,57 +64,63 @@ export default class extends Component {
         color: white;
         text-transform: uppercase;
         text-shadow: 1px 5px 0px black;
-
+        
       }
-
+      
+      .points {
+        color: white;
+      }
+      
       blink {
         -webkit-animation: 2s linear infinite condemned_blink_effect; // for android
         animation: 2s linear infinite condemned_blink_effect;
-    }
-    @-webkit-keyframes condemned_blink_effect { // for android
+      }
+      @-webkit-keyframes condemned_blink_effect { // for android
         0% {
-            visibility: hidden;
+          visibility: hidden;
         }
         50% {
-            visibility: hidden;
+          visibility: hidden;
         }
         100% {
-            visibility: visible;
+          visibility: visible;
         }
-    }
-    @keyframes condemned_blink_effect {
+      }
+      @keyframes condemned_blink_effect {
         0% {
-            visibility: hidden;
+          visibility: hidden;
         }
         50% {
-            visibility: hidden;
+          visibility: hidden;
         }
         100% {
-            visibility: visible;
+          visibility: visible;
         }
-    }
-    @media screen and (max-width: 767px) {
-      .portfolio--header {
-        font-size: 57px;
       }
-    }
-
-    @media screen and (max-width: 567px) {
-      .portfolio--header {
-        font-size: 32px;
+      @media screen and (max-width: 767px) {
+        .portfolio--header {
+          font-size: 57px;
+        }
       }
-
-      body {
-        background-position: left;
+      
+      @media screen and (max-width: 567px) {
+        .portfolio--header {
+          font-size: 32px;
+        }
+        
+        body {
+          background-position: left;
+        }
       }
-    }
-     
+      
       `}</style>
 
-      <Layout menu={this.state.start}/>
+      <Layout menu={false}/>
       </div>
-      </React.Fragment>
+        
+
+      </>
+            </MyProvider> 
     )
-  }
-  
+  } 
 }

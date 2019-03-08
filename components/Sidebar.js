@@ -4,6 +4,7 @@ import Modal from '../components/Modal'
 import Contact from '../components/Contact'
 import Work from '../components/Work'
 import Hire from '../components/Hire'
+import { MahContext } from "./Provider";
 
 export default class Sidebar extends Component {
 
@@ -37,10 +38,17 @@ export default class Sidebar extends Component {
     
     setPage = thePage => this.setState({currentPage: thePage, show: true })
     
-    blaher = link => (
+    blaher = (link, updateThePoints) => (
         <li className={`${link.children && "sidebar--has-children"}`} 
             onClick={link.children && this.subMenuToggler}>
-        <div className="sidebar--link" onClick={() => this.setPage(link.name.toLowerCase())}>{link.name}</div>
+        <div 
+            className="sidebar--link" 
+            onClick={() => {
+                this.setPage(link.name.toLowerCase()); 
+                updateThePoints();
+            }}>
+            {link.name}
+        </div>
         <ul 
           className={`sidebar--links`}
           >
@@ -61,16 +69,22 @@ export default class Sidebar extends Component {
 
     render() {
         return (  
-            <React.Fragment>
+            <>
+           
+               
+            <MahContext>
+            { context => (
+                <>
+                {console.log(context, "<--")}
             <ul className="sidebar" style={{display: `${this.props.menu ? "none" : "initial" }`}}>
                 {this.links().map(link => (
-                    <React.Fragment>
+                  <>  
                         {!link.children ? 
                         <div key={link} onClick={() => this.setPage(link.name.toLowerCase())} >
-                            {this.blaher(link)}
+                            {this.blaher(link, context.updatePoints)}
                         </div>
                          :
-                            this.blaher(link)
+                            this.blaher(link, context.updatePoints)
                         }
                       
                         <style jsx global>{`
@@ -167,21 +181,26 @@ export default class Sidebar extends Component {
                         
                         `}</style>
  
-                    </React.Fragment>
+                    </>
    
                     
                 ))}
             </ul>
+            </>
+            )}
+            </MahContext>
+          
         
-        <React.Fragment>
+        <>
         <Modal 
                 show={this.state.show} 
                 handleClose={this.hideModal}
                 content={this.state.pages[this.state.currentPage]}
                 pageClass={this.state.currentPage}
             />
-        </React.Fragment>
-</React.Fragment>
+        </>
+       
+</>
         )
         
     }

@@ -1,40 +1,3 @@
-// import React, { Component } from "react";
-
-
-// class Printer extends Component {
-//   constructor(props){
-//     super(props)
-//     this.state = {
-//       arr: this.props.text,
-//       theText: undefined
-//     }
-//   }
-
-//   componentDidMount() {
-//     this.state.arr.forEach( (letter, index) =>
-//       setTimeout(()=>{
-//         console.log(letter)
-//         this.setState( {theText: {[index]: letter}})
-//       }, 1000)
-//     )
-  
-//   }
-
-
-//   render() {
-//     return (
-//       <React.Fragment>
-//         <p>
-//           {this.state.theText && Object.values(this.state.theText).map( (letter, index) => <span>{letter}</span>)}
-//         </p>
-//       </React.Fragment>
-//     )
-//   }
-
-// }
-
-// export default Printer;
-
 import React, { Component } from "react";
 
 class Printer extends Component {
@@ -57,15 +20,49 @@ class Printer extends Component {
   }
 
   render() {
-    const { arr, theText} = this.state
+    const { arr } = this.state
+    const { animate } = this.props
     return (
-      <React.Fragment>
+      <>
           {arr.length &&
             Object.values(this.state.theText).map((letter, index) => (
-              letter == '^' ? <React.Fragment><br/><br/></React.Fragment> : <span>{letter}</span>
+              letter === '^' ? 
+              <><br/><br/></> : 
+              <span className={ animate ? "lett" : "none" }>
+                {letter}
+              </span>
             ))
           }
-      </React.Fragment>
+      <style jsx>{`
+      
+
+      .lett {
+        animation: fadein 0.5s ease-in-out;
+      }
+
+      @-webkit-keyframes fadein {
+        0%   { opacity: 0; }
+        100% { opacity: 1; }
+      }
+      @-moz-keyframes fadein {
+        0%   { opacity: 0; }
+        100% { opacity: 1; }
+      }
+      @-o-keyframes fadein {
+        0%   { opacity: 0; }
+        100% { opacity: 1; }
+      }
+      @keyframes fadein {
+        0%   { opacity: 0; }
+        100% { opacity: 1; }
+      }
+      
+      
+      `}
+
+      </style>
+      </>
+      
     );
   }
 }

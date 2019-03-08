@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ContentBlock = ({children, classes, contentClass}) => (
-  <React.Fragment>
+  <>
   <div className={"b--container" + " " + classes}>
   <div className="b--border">
     <div className={"b--content" + " " + contentClass}>
@@ -31,7 +31,7 @@ const ContentBlock = ({children, classes, contentClass}) => (
 }
 `}
 </style>
-</React.Fragment>
+</>
 )
 
 export default ContentBlock;
