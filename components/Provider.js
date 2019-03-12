@@ -15,7 +15,10 @@ class MyProvider extends Component {
     return (
       <MyContext.Provider value={
         {data: this.state,
-         updatePoints: () => this.setState({points: this.state.points + 100}) 
+         updatePoints: basePoints => this.setState(
+           {
+             points: this.state.points + basePoints
+          }) 
         }}
       >
         {this.props.children}

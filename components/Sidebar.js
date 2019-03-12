@@ -14,6 +14,7 @@ export default class Sidebar extends Component {
             start: false,
             haschildren: false,
             show: false,
+            freePoints: true,
             type: "",
             currentPage: undefined,
             pages: {
@@ -40,12 +41,15 @@ export default class Sidebar extends Component {
     
     blaher = (link, updateThePoints) => (
         <li className={`${link.children && "sidebar--has-children"}`} 
-            onClick={link.children && this.subMenuToggler}>
+            onClick={() => {
+                link.children && this.subMenuToggler;
+                updateThePoints(100);
+            }}>
         <div 
             className="sidebar--link" 
             onClick={() => {
-                this.setPage(link.name.toLowerCase()); 
-                updateThePoints();
+                this.setPage(link.name.toLowerCase()) 
+                updateThePoints(100)
             }}>
             {link.name}
         </div>
@@ -68,6 +72,8 @@ export default class Sidebar extends Component {
     )
 
     render() {
+        const {freePoints, haschildren, show, pages, currentPage} = this.state
+        const { menu} = this.props
         return (  
             <>
            
@@ -75,8 +81,9 @@ export default class Sidebar extends Component {
             <MahContext>
             { context => (
                 <>
+                {console.log(this)}
                 {console.log(context, "<--")}
-            <ul className="sidebar" style={{display: `${this.props.menu ? "none" : "initial" }`}}>
+            <ul className="sidebar" style={{display: `${menu ? "none" : "initial" }`}}>
                 {this.links().map(link => (
                   <>  
                         {!link.children ? 
@@ -89,14 +96,14 @@ export default class Sidebar extends Component {
                       
                         <style jsx global>{`
                             .sidebar {
-                                 ${!this.props.menu && "display: none"}
+                                 ${!menu && "display: none"}
                             }
                             .sidebar--has-children {
                                 position: relative;
                             }
 
                             .sidebar--has-children li{
-                                ${!this.state.haschildren && "display: none;"}
+                                ${!haschildren && "display: none;"}
                             }
                             .sidebar--has-children:before {
                                 content: '';
@@ -178,6 +185,21 @@ export default class Sidebar extends Component {
                               .display-none {
                                 display: none;
                               }
+
+                              .free-points {
+                                font-size: 19px;
+                                text-transform: uppercase;
+                                font-family: 'Press Start 2P';
+                                text-shadow: 0px 3px 1px darkgreen;
+                                text-align: center;
+                                background-color: forestgreen;
+                                color: white;
+                                height: 50px;
+                                display: block;
+                                margin: 0 auto;
+                                border-color: #007500;
+                            }
+                               
                         
                         `}</style>
  
@@ -186,21 +208,32 @@ export default class Sidebar extends Component {
                     
                 ))}
             </ul>
+            {
+              freePoints && 
+                <button 
+                className="free-points"
+                onClick={()=>{
+                    context.updatePoints(1000); 
+                    this.setState({freePoints: false})
+                }}>
+                    Click Here for Free Points
+                </button>
+            }
             </>
             )}
             </MahContext>
-          
-        
+   
+            
         <>
         <Modal 
-                show={this.state.show} 
+                show={show} 
                 handleClose={this.hideModal}
-                content={this.state.pages[this.state.currentPage]}
-                pageClass={this.state.currentPage}
+                content={pages[currentPage]}
+                pageClass={currentPage}
             />
         </>
        
-</>
+        </>
         )
         
     }

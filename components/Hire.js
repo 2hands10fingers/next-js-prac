@@ -236,7 +236,7 @@ class Hire extends Component {
             <h2>~ My Book of Spells ~</h2>
           
           <ul className="hire--skills-container">
-            {this.skills().map( skill => <li className="hire--skill" onClick={context.updatePoints}key={skill}>{skill}</li>)}
+            {this.skills().map( skill => <li className="hire--skill" onClick={context.updatePoints()} key={skill}>{skill}</li>)}
           </ul>
         </div>
         </div>

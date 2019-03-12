@@ -26,7 +26,7 @@ export default class extends Component {
       <h1 className="portfolio--header">
         <Printer text={"Glotacosm".split("")}/>
       </h1>
-      <h2 className="portfolio--header">
+      <h2 className="portfolio--header second">
         <Printer text={"Web Development PORTFOLIO".split("")}/>
       </h2>
       <blink>
@@ -40,14 +40,20 @@ export default class extends Component {
       
       .start-button {
         display: block;
-        margin: 0 auto;
+        margin: 1.5rem auto;
         font-family: ${font}
         text-transform: uppercase;
         border: none;
         color: white;
         background-color: transparent;
-        text-shadow: 1px 10px 0px black;
+        text-shadow: 1px 3px 0px black;
       }
+
+      .portfolio--wrapper > .portfolio--header {
+        margin-top: 5rem;
+      }
+
+   
       h1 {
         font-family: ${font}
         text-align: center;
@@ -99,7 +105,7 @@ export default class extends Component {
       }
       @media screen and (max-width: 767px) {
         .portfolio--header {
-          font-size: 57px;
+          font-size: 37px;
         }
       }
       
@@ -109,13 +115,21 @@ export default class extends Component {
         }
         
         body {
-          background-position: left;
+          background: url(http://i.imgur.com/F0gBD6c.png) 90%/cover no-repeat !important;
+        }
+
+        .portfolio--header.second {
+          font-size: 20px;
+        }
+
+        .free-points {
+          width: 282px;
         }
       }
       
       `}</style>
 
-      <Layout menu={false}/>
+      <Layout menu={this.state.start}/>
       </div>
         
 

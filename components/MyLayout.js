@@ -36,12 +36,19 @@ class Layout extends Component {
         <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet" />
       </Head>
       <style jsx global>{`
+      * {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      
       body {
         background: url('http://i.imgur.com/F0gBD6c.png') 100%/cover no-repeat;
         height: 100vh;
         width: 100vw;
         overflow: hidden;
       }
+
+
 
       .points {
         position: absolute;
