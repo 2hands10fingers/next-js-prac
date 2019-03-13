@@ -1,13 +1,8 @@
 import Layout from '../components/MyLayout.js'
 import Printer from '../components/Printer';
 import MyProvider from "../components/Provider";
-
-const font = "'Press Start 2P';"
-
-
 const {Component} = React
-
-
+const font = "'Press Start 2P';"
 
 export default class extends Component {
   constructor(props) {

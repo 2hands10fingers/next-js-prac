@@ -33,23 +33,30 @@ export default class Sidebar extends Component {
         ]
     }
 
+    builtOrMaintainedHandler = checked => {
+        console.log(checked.toLowerCase());
+         (checked.toLowerCase() === "built" || 
+          checked.toLowerCase() === "maintained" ) ? checked : "";
+    } 
+
     subMenuToggler = () => this.setState({haschildren: !this.state.haschildren})
     
     hideModal = () => this.setState({ show: false, type: "" });
     
     setPage = thePage => this.setState({currentPage: thePage, show: true })
     
-    blaher = (link, updateThePoints) => (
+    blaher = (link, updateThePoints, updateTheType) => (
         <li className={`${link.children && "sidebar--has-children"}`} 
             onClick={() => {
                 link.children && this.subMenuToggler;
-                updateThePoints(100);
+                updateThePoints();
+                
             }}>
         <div 
             className="sidebar--link" 
             onClick={() => {
                 this.setPage(link.name.toLowerCase()) 
-                updateThePoints(100)
+                updateThePoints();
             }}>
             {link.name}
         </div>
@@ -58,8 +65,16 @@ export default class Sidebar extends Component {
           >
             {link.children && link.children.map(childLink => (
                 <div 
+                    onClick={()=> { 
+                        this.builtOrMaintainedHandler(childLink, updateTheType);
+                        this.setPage(link.name.toLowerCase()) 
+                        updateTheType(
+                            (childLink.toLowerCase() === "built" || 
+                             childLink.toLowerCase() === "maintained" ) ? 
+                                childLink.toLowerCase() : "");
+                     }}
                     key={childLink} 
-                    href={`${link.url}?sort=${childLink.toLowerCase()}`}>
+                    >
                     <li>
                         <div className="sidebar--link__child">
                             {childLink}
@@ -75,23 +90,19 @@ export default class Sidebar extends Component {
         const {freePoints, haschildren, show, pages, currentPage} = this.state
         const { menu} = this.props
         return (  
-            <>
-           
-               
+            <>   
             <MahContext>
             { context => (
-                <>
-                {console.log(this)}
-                {console.log(context, "<--")}
+            <>
             <ul className="sidebar" style={{display: `${menu ? "none" : "initial" }`}}>
                 {this.links().map(link => (
                   <>  
                         {!link.children ? 
                         <div key={link} onClick={() => this.setPage(link.name.toLowerCase())} >
-                            {this.blaher(link, context.updatePoints)}
+                            {this.blaher(link, context.updatePoints, context.updateType)}
                         </div>
                          :
-                            this.blaher(link, context.updatePoints)
+                            this.blaher(link, context.updatePoints, context.updateType)
                         }
                       
                         <style jsx global>{`
@@ -162,9 +173,7 @@ export default class Sidebar extends Component {
                                 background: rgba(0, 0, 0, 0.6);
                               }
                               
-                              .work--container {
-                                position: absolute;
-                              }
+                        
                               .modal-main {
                                 position:fixed;
                                 background: white;
@@ -198,6 +207,7 @@ export default class Sidebar extends Component {
                                 display: block;
                                 margin: 0 auto;
                                 border-color: #007500;
+                                cursor: pointer;
                             }
                                
                         
@@ -230,6 +240,7 @@ export default class Sidebar extends Component {
                 handleClose={this.hideModal}
                 content={pages[currentPage]}
                 pageClass={currentPage}
+                type={this.state.type}
             />
         </>
        

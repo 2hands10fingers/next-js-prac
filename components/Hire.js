@@ -218,6 +218,10 @@ class Hire extends Component {
             width: 40%;
             font-size: 15px;
           }
+
+          .hire--text {
+            margin-top: 2.8rem;
+          }
         }
         
         @media screen and (max-width: 478px) {
@@ -236,7 +240,11 @@ class Hire extends Component {
             <h2>~ My Book of Spells ~</h2>
           
           <ul className="hire--skills-container">
-            {this.skills().map( skill => <li className="hire--skill" onClick={context.updatePoints()} key={skill}>{skill}</li>)}
+            {this.skills().map( skill => (
+              <li className="hire--skill" 
+                  onClick={()=> context.updatePoints()} 
+                  key={skill}>{skill}</li>)
+              )}
           </ul>
         </div>
         </div>

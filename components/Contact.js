@@ -23,7 +23,6 @@ export default class Contact extends Component {
       { site: "mailto:antonio@glotacosm.com", img: 'https://glotacosm.com/img/char/char-email.png', label: "email" },
       { site: "https://github.com/2hands10fingers", img: 'https://glotacosm.com/img/char/char-github.png', label: "github" },
       { site: "https://www.linkedin.com/in/anogueras/", img: 'https://glotacosm.com/img/char/char-linkedin.png', label: "linkedin" },
-      // { site: "https://www.linkedin.com/in/anogueras/", img: 'https://glotacosm.com/img/char/char-linkedin.png', label: "linkedin" }
     ]
   }
 
@@ -36,7 +35,6 @@ export default class Contact extends Component {
           <>
          
           <h1>Contact</h1>
-          {console.log(context)}
         <div className="form">
           {this.icons().map( (info, index) =>
             <a
@@ -44,7 +42,7 @@ export default class Contact extends Component {
             onMouseOver={() => this.setState({label: info.label, site: info.site})}
             onMouseLeave={() => this.setState({label: undefined, site: undefined })}
             className={`contact--image-link ${info.label && info.label}`}
-            onClick={context.updatePoints(100)}
+            onClick={()=> context.updatePoints()}
             href={info.site}
             target="_blank"
             >
@@ -62,12 +60,9 @@ export default class Contact extends Component {
           side="left"
           charName={label}
           />
-{/* 
-  <a href={!site ? "#" : site}>{
-    !site ? "Choose Your Character" : this.contactOrNah(site)
-  }</a> */}
 
-          <div className="versus">~VS~</div>
+
+        <div className="versus">~VS~</div>
 
         <CharSelect
           side="right"
@@ -78,8 +73,12 @@ export default class Contact extends Component {
         .modal-main.contact {
           padding: 0;
           height: 80.2%;
-          
-          
+                    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#771e9a+20,982ad8+50,771e9a+80&0+0,0.8+2,1+0,1+99,0.8+99,0+100 */
+          background: -moz-linear-gradient(top, rgba(119,30,154,1) 0%, rgba(119,30,154,0.8) 2%, rgba(119,30,154,0.8) 20%, rgba(152,42,216,0.8) 50%, rgba(119,30,154,0.8) 80%, rgba(119,30,154,0.8) 99%, rgba(119,30,154,0) 100%); /* FF3.6-15 */
+          background: -webkit-linear-gradient(top, rgba(119,30,154,1) 0%,rgba(119,30,154,0.8) 2%,rgba(119,30,154,0.8) 20%,rgba(152,42,216,0.8) 50%,rgba(119,30,154,0.8) 80%,rgba(119,30,154,0.8) 99%,rgba(119,30,154,0) 100%); /* Chrome10-25,Safari5.1-6 */
+          background: linear-gradient(to bottom, rgba(119,30,154,1) 0%,rgba(119,30,154,0.8) 2%,rgba(119,30,154,0.8) 20%,rgba(152,42,216,0.8) 50%,rgba(119,30,154,0.8) 80%,rgba(119,30,154,0.8) 99%,rgba(119,30,154,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+          filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#771e9a', endColorstr='#00771e9a',GradientType=0 ); /* IE6-9 */
+        
           
         }
 
@@ -127,6 +126,7 @@ export default class Contact extends Component {
           flex-wrap: wrap;
           justify-content: center;
           margin: 0 auto;
+          margin-bottom: 3rem;
         }
 
         .contact--container h1, 

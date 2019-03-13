@@ -43,7 +43,9 @@ const WorkItem = (props) => (
       </ContentBlock>
       <p className="work--stack">
           {
-            props.stack.split(", ").map( (stack, index) => <img key={index} src={`https://glotacosm.com/img/icons/${stack.toLowerCase()}.svg`} />)
+            props.stack.split(", ").map( (stack, index) => (
+            <img key={index} src={`https://glotacosm.com/img/icons/${stack.toLowerCase()}.svg`} />
+            ))
           }
         </p>
       <style jsx>{`
@@ -107,25 +109,27 @@ const WorkItem = (props) => (
 
       .work--meta__right a {
         text-decoration: none;
-        background-color: pink;
+        background-color: green;
         height: 30px;
         line-height: 30px;
         padding: 1rem;
-        border: 2px solid pink;
+        border: 2px solid green;
         transition: 0.3s ease-in-out
     }
 
     .work--meta__right a:hover {
       cursor: pointer;
       background-color: white;
-      border: 2px solid pink;
-      color: pink;
+      border: 2px solid green;
+      color: green;
     }
 
       .workitem--container {
         margin: 5rem 1rem;
         border-radius: 13px;
         background-color: #5142ab63;
+        animation: fadeIn 1s ease-in-out;
+        box-shadow: 1px 2px 1px black;
        
       }
 
@@ -151,11 +155,6 @@ const WorkItem = (props) => (
         height: 40px;
       }
 
-      .work--container {
-        max-width: 1140px;
-        margin: 0 auto;
-      }
-
       .workitem--img-text {
         display: flex;
         align-items: center;
@@ -171,6 +170,23 @@ const WorkItem = (props) => (
 
       .workitem--container .b--container {
         height: 254px;
+      }
+
+      @-webkit-keyframes fadein {
+        0%   { opacity: 0; }
+        100% { opacity: 1; }
+      }
+      @-moz-keyframes fadein {
+        0%   { opacity: 0; }
+        100% { opacity: 1; }
+      }
+      @-o-keyframes fadein {
+        0%   { opacity: 0; }
+        100% { opacity: 1; }
+      }
+      @keyframes fadein {
+        0%   { opacity: 0; }
+        100% { opacity: 1; }
       }
 
       @media screen and (max-width: 1060px) {

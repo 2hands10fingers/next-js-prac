@@ -2,7 +2,7 @@ import Sidebar from './Sidebar'
 import Head from 'next/head'
 import '../styles/index.sass'
 import '../styles/misc.css'
-import {MahContext} from "./Provider";
+import { MahContext } from "./Provider";
 
 const {Component} = React;
 const layoutStyle = {
@@ -47,8 +47,6 @@ class Layout extends Component {
         width: 100vw;
         overflow: hidden;
       }
-
-
 
       .points {
         position: absolute;

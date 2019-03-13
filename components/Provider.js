@@ -7,21 +7,24 @@ class MyProvider extends Component {
     
     super()
     this.state = {
-      points: 0
+      points: 0,
+      type: ""
     }
   }
 
   render() {
+    const { points } = this.state;
+    const { children } = this.props;
     return (
       <MyContext.Provider value={
         {data: this.state,
          updatePoints: basePoints => this.setState(
-           {
-             points: this.state.points + basePoints
-          }) 
+           { points: points + (!basePoints ? 100 : basePoints) }
+           ),
+         updateType: type => this.setState({type: type})  
         }}
       >
-        {this.props.children}
+        { children }
       </MyContext.Provider>
     )
   }
@@ -29,4 +32,4 @@ class MyProvider extends Component {
 
 const MahContext = MyContext.Consumer
 export default MyProvider;
-export {MahContext} 
+export { MahContext }; 

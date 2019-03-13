@@ -1,19 +1,17 @@
 import React, { Component } from "react";
 import WorkItem from "./WorkItem";
+import { MahContext } from "./Provider";
 
 class Work extends Component {
   constructor() {
     super()
     this.state = {
       built: false,
-      maintained: false
     }
   }
 
   componentWillMount() {
-    this.props.type === "built" ?
-      this.setState({ built: true }) :
-      this.setState({ maintained: true })
+    this.props.type === "built" && this.setState({ built: true })
   }
 
 
@@ -124,7 +122,7 @@ class Work extends Component {
       },{
         title: "George Mason University",
         subline: "Institue for Biohealth Innovation",
-        role: "Freelance Developer/Teacher",
+        role: "Freelance Developer / Teacher",
         workLink: "https://ibi.gmu.edu/",
         descrip: "Aided in building this site and taught the Communications Officer how to code and maintain it.",
         img: "",
@@ -139,35 +137,55 @@ class Work extends Component {
 
   render() {
     const {built, maintained} = this.state;
+    const { type } = this.props
     return (
       <div 
         className={`work--container ${built ? "built" : "maintained"}`}
       >
       <h1>Work</h1>
-      {this.work().map( (i, index) =>
-        <WorkItem
-          key={i.title + "--item"}
-          title={i.title}
-          role={i.role}
-          workLink={i.workLink}
-          descrip={i.descrip}
-          img={i.img}
-          stack={i.stack}
-          category={i.category}
-          subline={i.subline}
-          index={index}
-          
-        />
-
-      )}
-    <div className={`work--filter ${this.state.built}`}>
-     <button>Built</button>
-     <button>Maintained</button>
+      
+      <MahContext>
+        { context => (
+          <>
+          <div className={`work--filter ${this.state.built}`}>
+     <button onClick={()=> context.updateType("")}>All</button>
+     <button onClick={()=> context.updateType("built")}>Built</button>
+     <button onClick={()=> context.updateType("maintained")}>Maintained</button>
     </div>
+            {this.work().map( (i, index) => {
+              console.log(i[context.data.type])
+              if (i[context.data.type] || context.data.type == "") { 
+                
+                return (
+                  <WorkItem
+                  key={index}
+                  title={i.title}
+                  role={i.role}
+                  workLink={i.workLink}
+                  descrip={i.descrip}
+                  img={i.img}
+                  stack={i.stack}
+                  category={i.category}
+                  subline={i.subline}
+                  index={index}
+                  /> )
+                }
+              }
+            )} 
+        </>
+        )}
+      </MahContext>
+  
+   
     <style jsx global>{`
     .modal-main.work {
       background: url(https://glotacosm.com/img/conifer_forest_inner.png);
     }
+
+    .modal-main.work::-webkit-scrollbar { 
+      width: 0;
+      height: 0;
+  }
       
       .work--thing, .work--thing .b--content{
         min-height: 254px !important; 
@@ -175,6 +193,8 @@ class Work extends Component {
       .work--container h1 {
         margin-top: 10rem;
       }
+
+
 
         
       .work--container .workitem--container:nth-child(odd) .workitem--img-text {
@@ -195,6 +215,38 @@ class Work extends Component {
         margin-top: 12rem;
        }
 
+       .work--filter {
+        text-align: center;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    .work--filter button {
+      line-height: 40px;
+      height: 40px;
+      background-color: green;
+      border: none;
+      color: white;
+      text-transform: uppercase;
+      font-family: 'Press Start 2P';
+      cursor: pointer;
+      text-align: center;
+      width: 160px;
+      margin: 0 1rem;
+      box-shadow: 1px 2px 12px black;
+  }
+    .work--filter button:hover {
+      cursor: pointer;
+      background-color: lightgreen;
+      border: 2px solid lightgr;
+    }
+
+    .work--container {
+      max-width: 1140px;
+      margin: 0 auto;
+    }
+
        @media screen and (max-width: 1060px) {
         .work--container {
           position: initial;
@@ -211,6 +263,16 @@ class Work extends Component {
         .work--thing {
           position: relative;
           top: -20px;
+        }
+      }
+
+      @media screen and (max-width: 567px) { 
+        .work--filter {
+          flex-direction: column;
+        }
+
+        .work--filter button {
+          margin: 1rem 0;
         }
       }
         
