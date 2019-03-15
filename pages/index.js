@@ -16,7 +16,7 @@ export default class extends Component {
     return (
       <MyProvider>
       <>
-        
+
       <div className="portfolio--wrapper">
       <h1 className="portfolio--header">
         <Printer text={"Glotacosm".split("")}/>
@@ -24,15 +24,14 @@ export default class extends Component {
       <h2 className="portfolio--header second">
         <Printer text={"Web Development PORTFOLIO".split("")}/>
       </h2>
-      <blink>
+
       <button className="start-button blink"
-        style={{display: `${!this.state.start && "none"}`}} 
+        style={{display: `${!this.state.start && "none"}`}}
         onClick={this.pressStart}>
         Click Here to Continue
       </button>
-      </blink>
       <style jsx>{`
-      
+
       .start-button {
         display: block;
         margin: 1.5rem auto;
@@ -48,7 +47,7 @@ export default class extends Component {
         margin-top: 5rem;
       }
 
-   
+
       h1 {
         font-family: ${font}
         text-align: center;
@@ -57,7 +56,7 @@ export default class extends Component {
         text-transform: uppercase;
         text-shadow: 1px 5px 0px black;
       }
-      
+
       h2 {
         font-family: ${font}
         text-align: center;
@@ -65,13 +64,13 @@ export default class extends Component {
         color: white;
         text-transform: uppercase;
         text-shadow: 1px 5px 0px black;
-        
+
       }
-      
+
       .points {
         color: white;
       }
-      
+
       blink {
         -webkit-animation: 2s linear infinite condemned_blink_effect; // for android
         animation: 2s linear infinite condemned_blink_effect;
@@ -103,12 +102,12 @@ export default class extends Component {
           font-size: 37px;
         }
       }
-      
+
       @media screen and (max-width: 567px) {
         .portfolio--header {
           font-size: 32px;
         }
-        
+
         body {
           background: url(http://i.imgur.com/F0gBD6c.png) 90%/cover no-repeat !important;
         }
@@ -121,15 +120,15 @@ export default class extends Component {
           width: 282px;
         }
       }
-      
+
       `}</style>
 
       <Layout menu={this.state.start}/>
       </div>
-        
+
 
       </>
-            </MyProvider> 
+            </MyProvider>
     )
-  } 
+  }
 }

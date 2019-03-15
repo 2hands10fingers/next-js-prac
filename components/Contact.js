@@ -33,7 +33,7 @@ export default class Contact extends Component {
       <MahContext>
         { context => (
           <>
-         
+
           <h1>Contact</h1>
         <div className="form">
           {this.icons().map( (info, index) =>
@@ -78,8 +78,8 @@ export default class Contact extends Component {
           background: -webkit-linear-gradient(top, rgba(119,30,154,1) 0%,rgba(119,30,154,0.8) 2%,rgba(119,30,154,0.8) 20%,rgba(152,42,216,0.8) 50%,rgba(119,30,154,0.8) 80%,rgba(119,30,154,0.8) 99%,rgba(119,30,154,0) 100%); /* Chrome10-25,Safari5.1-6 */
           background: linear-gradient(to bottom, rgba(119,30,154,1) 0%,rgba(119,30,154,0.8) 2%,rgba(119,30,154,0.8) 20%,rgba(152,42,216,0.8) 50%,rgba(119,30,154,0.8) 80%,rgba(119,30,154,0.8) 99%,rgba(119,30,154,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
           filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#771e9a', endColorstr='#00771e9a',GradientType=0 ); /* IE6-9 */
-        
-          
+
+
         }
 
         .versus {
@@ -129,8 +129,8 @@ export default class Contact extends Component {
           margin-bottom: 3rem;
         }
 
-        .contact--container h1, 
-        .contact--container h2, 
+        .contact--container h1,
+        .contact--container h2,
         .versus {
           font-family: 'Press Start 2P';
           text-align: center;
@@ -140,13 +140,15 @@ export default class Contact extends Component {
           display: flex;
           justify-content: space-evenly;
           position: relative;
+          margin: 0 auto;
+          width: 85%;
         }
 
         .char--select-container {
           width: 50%;
         }
 
-        .char--select-container.right .b--content {        
+        .char--select-container.right .b--content {
           /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+20,2989d8+50,1e5799+80&0+0,1+0,1+99,1+99,0+100 */
           background: -moz-linear-gradient(45deg, rgba(30,87,153,1) 0%, rgba(30,87,153,1) 20%, rgba(41,137,216,1) 50%, rgba(30,87,153,1) 80%, rgba(30,87,153,1) 99%, rgba(30,87,153,0) 100%); /* FF3.6-15 */
           background: -webkit-linear-gradient(45deg, rgba(30,87,153,1) 0%,rgba(30,87,153,1) 20%,rgba(41,137,216,1) 50%,rgba(30,87,153,1) 80%,rgba(30,87,153,1) 99%,rgba(30,87,153,0) 100%); /* Chrome10-25,Safari5.1-6 */
@@ -193,7 +195,7 @@ export default class Contact extends Component {
 
         .char--select-container.right .char--name {
           text-align: left;
-        } 
+        }
 
         @media screen and (max-width: 767px) {
           .versus {
@@ -207,14 +209,18 @@ export default class Contact extends Component {
           .form {
             width: initial;
           }
-          
+
+          .contact--char-wrapper {
+            width: initial;
+          }
+
           .versus {
             font-size: 14px;
           }
-          
+
           .modal-main.contact {
             height: 100%;
-          } 
+          }
         }
 
         `}
@@ -224,7 +230,7 @@ export default class Contact extends Component {
         )}
         </MahContext>
       </div>
-      
+
       )
   }
 }

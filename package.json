@@ -8,8 +8,7 @@
     "build": "next build",
     "oldstart": "NODE_ENV=production node server.js",
     "start": "next start -p 8000",
-    "nstart": "next start",
-    "now-build": "next build && next export -o dist"
+    "nstart": "next start"
   },
   "keywords": [],
   "author": "",

@@ -11,30 +11,30 @@ class Printer extends Component {
 
   componentDidMount() {
     this.state.arr.forEach((letter, index) =>
-      setTimeout(() => {        
+      setTimeout(() => {
         this.setState(state => ({
-        theText:  state.theText + letter 
+        theText:  state.theText + letter
         }));
       }, 30 * index)
     );
   }
 
   render() {
-    const { arr } = this.state
+    const { arr, theText } = this.state
     const { animate } = this.props
     return (
       <>
           {arr.length &&
-            Object.values(this.state.theText).map((letter, index) => (
-              letter === '^' ? 
-              <><br/><br/></> : 
-              <span className={ animate ? "lett" : "none" }>
+            Object.values(theText).map((letter, index) => (
+              letter === '^' ?
+              <><br/><br/></> :
+              <span key={index} className={ animate ? "lett" : "none" }>
                 {letter}
               </span>
             ))
           }
       <style jsx>{`
-      
+
 
       .lett {
         animation: fadein 0.5s ease-in-out;
@@ -56,13 +56,13 @@ class Printer extends Component {
         0%   { opacity: 0; }
         100% { opacity: 1; }
       }
-      
-      
+
+
       `}
 
       </style>
       </>
-      
+
     );
   }
 }

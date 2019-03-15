@@ -9,17 +9,17 @@ const WorkItem = (props) => (
   </div>
     <div className="workitem--img-text">
       <a
-        target="_blank" 
+        target="_blank"
         href={props.workLink ? props.workLink : props.repo }>
         <img
-          src={props.img ? props.img : "https://via.placeholder.com/500x281"} 
+          src={props.img ? props.img : "https://via.placeholder.com/500x281"}
           alt={props.title} />
         </a>
         <ContentBlock classes="work--thing">
           <p className="work--description">{props.descrip}</p>
         </ContentBlock>
       </div>
-   
+
       <ContentBlock>
       <div className="work--meta">
         <div className="work--meta__left">
@@ -27,14 +27,14 @@ const WorkItem = (props) => (
           <p className="work--role">Role:{props.role}</p>
           {props.category.length < 2 ? <p>Category</p> : <p>Categories</p>}
         </div>
-        
+
         <ul>
-          {props.category.map( category => <li key={category}>{category}</li> )}
+          {props.category.map( (category, index) => <li key={index}>{category}</li> )}
         </ul>
         </div>
         <div className="work--meta__right">
         <a
-          target="_blank" 
+          target="_blank"
           href={props.workLink ? props.workLink : props.repo }>
           {props.workLink ? "Visit Site" : "Visit Repo"}
         </a>
@@ -89,7 +89,7 @@ const WorkItem = (props) => (
         border-top-right-radius: 13px;
         border-top-left-radius: 13px;
         border-bottom: 3px dashed white;
-        margin-bottom: 1rem;  
+        margin-bottom: 1rem;
       }
 
       .workitem--title.with-subline {
@@ -130,15 +130,15 @@ const WorkItem = (props) => (
         background-color: #5142ab63;
         animation: fadeIn 1s ease-in-out;
         box-shadow: 1px 2px 1px black;
-       
+
       }
 
-   
-      
+
+
       .workitem--img-text {
         margin-bottom: 1rem !important;
       }
-      
+
       .workitem--img-text img {
         margin: 0 1rem;
         width: 500px;
@@ -231,13 +231,13 @@ const WorkItem = (props) => (
           height: calc(281px * 0.6);
         }
       }
-      
 
-      
+
+
       `}
 
       </style>
-  
+
     </div>
   )
 
