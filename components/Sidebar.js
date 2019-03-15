@@ -27,7 +27,7 @@ export default class Sidebar extends Component {
 
     links = () => {
         return [
-            { name: "Work", url: "/work", children: ["Built", "Maintained"] },
+            { name: "Work", url: "/work", children: ["All", "Built", "Maintained"] },
             { name: "Contact", url: "/contact" },
             { name: "Hire", url: "/hire", background: "// https://www.glotacosm.com/orientpixel-bg.jpg" }
         ]
@@ -35,45 +35,46 @@ export default class Sidebar extends Component {
 
     builtOrMaintainedHandler = checked => {
         console.log(checked.toLowerCase());
-         (checked.toLowerCase() === "built" || 
-          checked.toLowerCase() === "maintained" ) ? checked : "";
-    } 
+         (checked.toLowerCase() === "built" ||
+          checked.toLowerCase() === "maintained" ||
+          checked.toLowerCase() === "all" ) ? checked : "";
+    }
 
     subMenuToggler = () => this.setState({haschildren: !this.state.haschildren})
-    
+
     hideModal = () => this.setState({ show: false, type: "" });
-    
+
     setPage = thePage => this.setState({currentPage: thePage, show: true })
-    
+
     blaher = (link, updateThePoints, updateTheType) => (
-        <li className={`${link.children && "sidebar--has-children"}`} 
+        <li className={`${link.children && "sidebar--has-children"}`}
             onClick={() => {
-                link.children && this.subMenuToggler;
+                link.children && this.subMenuToggler();
                 updateThePoints();
-                
+
             }}>
-        <div 
-            className="sidebar--link" 
+        <div
+            className="sidebar--link"
             onClick={() => {
-                this.setPage(link.name.toLowerCase()) 
+                this.setPage(link.name.toLowerCase())
                 updateThePoints();
             }}>
             {link.name}
         </div>
-        <ul 
+        <ul
           className={`sidebar--links`}
           >
             {link.children && link.children.map(childLink => (
-                <div 
-                    onClick={()=> { 
+                <div
+                    onClick={()=> {
                         this.builtOrMaintainedHandler(childLink, updateTheType);
-                        this.setPage(link.name.toLowerCase()) 
+                        this.setPage(link.name.toLowerCase())
                         updateTheType(
-                            (childLink.toLowerCase() === "built" || 
-                             childLink.toLowerCase() === "maintained" ) ? 
+                            (childLink.toLowerCase() === "built" ||
+                             childLink.toLowerCase() === "maintained" ) ?
                                 childLink.toLowerCase() : "");
                      }}
-                    key={childLink} 
+                    key={childLink}
                     >
                     <li>
                         <div className="sidebar--link__child">
@@ -89,22 +90,22 @@ export default class Sidebar extends Component {
     render() {
         const {freePoints, haschildren, show, pages, currentPage} = this.state
         const { menu} = this.props
-        return (  
-            <>   
+        return (
+            <>
             <MahContext>
             { context => (
             <>
             <ul className="sidebar" style={{display: `${menu ? "none" : "initial" }`}}>
                 {this.links().map(link => (
-                  <>  
-                        {!link.children ? 
+                  <>
+                        {!link.children ?
                         <div key={link} onClick={() => this.setPage(link.name.toLowerCase())} >
                             {this.blaher(link, context.updatePoints, context.updateType)}
                         </div>
                          :
                             this.blaher(link, context.updatePoints, context.updateType)
                         }
-                      
+
                         <style jsx global>{`
                             .sidebar {
                                  ${!menu && "display: none"}
@@ -113,23 +114,45 @@ export default class Sidebar extends Component {
                                 position: relative;
                             }
 
-                            .sidebar--has-children li{
-                                ${!haschildren && "display: none;"}
+                            .sidebar--has-children .sidebar--links {
+
+                                ${!haschildren ? "display: none;" : "display: initial;"}
+                                animation: fadein 0.3s eas-in-out;
+                            }
+
+                            @-webkit-keyframes fadein {
+                              0%   { opacity: 0; }
+                              100% { opacity: 1; }
+                            }
+                            @-moz-keyframes fadein {
+                              0%   { opacity: 0; }
+                              100% { opacity: 1; }
+                            }
+                            @-o-keyframes fadein {
+                              0%   { opacity: 0; }
+                              100% { opacity: 1; }
+                            }
+                            @keyframes fadein {
+                              0%   { opacity: 0; }
+                              100% { opacity: 1; }
                             }
                             .sidebar--has-children:before {
                                 content: '';
                                 top: 17px;
                                 right: 0;
-                                border-style: inset; 
+                                border-style: inset;
                                 position: absolute;
                                 width: 0;
                                 height: 0;
                                 border-style: solid;
                                 border-width: 10px 12.5px 0 12.5px;
                                 border-color: white transparent transparent transparent;
-                                
+
                             }
-                            
+
+                            .sidebar--has-children .sidebar--link {
+                              pointer-events: none;
+                            }
                             .sidebar--has-children .sidebar--links li:hover {
                                 background-color: lightgreen;
                             }
@@ -157,7 +180,7 @@ export default class Sidebar extends Component {
                             }
 
                             .sidebar--link {
-                                font-size: 36px;                                
+                                font-size: 36px;
                             }
 
                             .sidebar--link__child {
@@ -172,8 +195,8 @@ export default class Sidebar extends Component {
                                 height: 100%;
                                 background: rgba(0, 0, 0, 0.6);
                               }
-                              
-                        
+
+
                               .modal-main {
                                 position:fixed;
                                 background: white;
@@ -186,11 +209,11 @@ export default class Sidebar extends Component {
                                 transform: translate(-50%,-50%);
                                 overflow:  auto;
                               }
-                              
+
                               .display-block {
                                 display: block;
                               }
-                              
+
                               .display-none {
                                 display: none;
                               }
@@ -209,21 +232,21 @@ export default class Sidebar extends Component {
                                 border-color: #007500;
                                 cursor: pointer;
                             }
-                               
-                        
+
+
                         `}</style>
- 
+
                     </>
-   
-                    
+
+
                 ))}
             </ul>
             {
-              freePoints && 
-                <button 
+              freePoints &&
+                <button
                 className="free-points"
                 onClick={()=>{
-                    context.updatePoints(1000); 
+                    context.updatePoints(1000);
                     this.setState({freePoints: false})
                 }}>
                     Click Here for Free Points
@@ -232,20 +255,20 @@ export default class Sidebar extends Component {
             </>
             )}
             </MahContext>
-   
-            
+
+
         <>
-        <Modal 
-                show={show} 
+        <Modal
+                show={show}
                 handleClose={this.hideModal}
                 content={pages[currentPage]}
                 pageClass={currentPage}
                 type={this.state.type}
             />
         </>
-       
+
         </>
         )
-        
+
     }
 }

@@ -1,7 +1,7 @@
 import Sidebar from './Sidebar'
 import Head from 'next/head'
-import '../styles/index.sass'
-import '../styles/misc.css'
+// import '../styles/index.sass'
+// import '../styles/misc.css'
 import { MahContext } from "./Provider";
 
 const {Component} = React;
@@ -28,8 +28,8 @@ class Layout extends Component {
   setPage = (thePage) => {this.setState({currentPage: thePage })}
 
   render(){
-    
-    return(  
+
+    return(
     <div>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -40,7 +40,7 @@ class Layout extends Component {
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
       }
-      
+
       body {
         background: url('http://i.imgur.com/F0gBD6c.png') 100%/cover no-repeat;
         height: 100vh;
@@ -62,7 +62,7 @@ class Layout extends Component {
       .points-txt {
         font-size: 15px;
       }
-      
+
     `}
     </style>
     <MahContext>
