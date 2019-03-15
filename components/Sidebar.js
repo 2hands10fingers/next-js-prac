@@ -231,6 +231,7 @@ export default class Sidebar extends Component {
                                 margin: 0 auto;
                                 border-color: #007500;
                                 cursor: pointer;
+                                max-width: 300px;
                             }
 
 

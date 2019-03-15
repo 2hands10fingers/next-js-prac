@@ -5,5 +5,6 @@
 // module.exports = withFonts();
 // next.config.js
 module.exports = {
-  target: 'serverless'
+  target: 'serverless',
+  alias: 'glotacosm-portfolio'
 };

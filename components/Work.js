@@ -22,9 +22,9 @@ class Work extends Component {
         role: "Lead Developer",
         workLink: "https://podcastmovement.com/",
         descrip: "Custom theme built from mock-ups for event-based organization. Setup for the client to make backend changes.",
-        img: "",
+        img: "https://glotacosm.com/img/screens/podmov2019.jpg",
         stack: "HTML5, Javascript, SASS, PHP, Wordpress, Node",
-        category: ["Pofessional"],
+        category: ["Professional"],
         built: true,
         maintained: true,
       },{
@@ -33,30 +33,31 @@ class Work extends Component {
         role: "Lead Developer",
         workLink: "http://supplychain.dev.square205.com",
         descrip: "Supply Chain Automation is a resource website for those interested in Supply Chain Automation to access educational resources. Custom Wordpress theme built from scratch and developed from design mock-ups. Built-in Google Analytics tracking solution to track downloads and page visits according to user meta data. Built majority of front-end. Complete with SASS styles, modals, registry logic, and gated content.",
-        img: "",
+        img: "https://glotacosm.com/img/screens/supplychain.jpg",
         stack: "HTML5, JavaScript, SASS, PHP, Wordpress, Python, Node",
         category: ["Professional"],
         built: true,
         maintained: false
       },
+      // {
+      //   title: "Money On Mobile",
+      //   subline: "",
+      //   role: "Lead Developer",
+      //   workLink: "http://moneyonmobile.us/",
+      //   descrip: "Custom theme built from scratch. Three-part website to cater to consumers, retailers, and investors of the largest. MoneyOnMobile is a simple, easy to use mobile SMS or smart phone application that lets you connect with your money at the push of a button. With Over 200 million customers, it is one of India's larget mobile money mangagement system. Complete with twitter feed.",
+      //   img: "",
+      //   stack: "HTML5, JavaScript, SASS, PHP, Wordpress, Node",
+      //   category: ["Professional"],
+      //   built: true,
+      //   maintained: false
+      // },
       {
-        title: "Money On Mobile",
-        subline: "",
-        role: "Lead Developer",
-        workLink: "http://moneyonmobile.us/",
-        descrip: "Custom theme built from scratch. Three-part website to cater to consumers, retailers, and investors of the largest. MoneyOnMobile is a simple, easy to use mobile SMS or smart phone application that lets you connect with your money at the push of a button. With Over 200 million customers, it is one of India's larget mobile money mangagement system. Complete with twitter feed.",
-        img: "",
-        stack: "HTML5, JavaScript, SASS, PHP, Wordpress, Node",
-        category: ["Professional"],
-        built: true,
-        maintained: false
-      },{
         title: "Autoquip",
         subline: "",
         role: "Developer",
         workLink: "https://autoquip.com",
         descrip: "Consulted on developer operations, technical challenges, solving coding problems, and managing deployment. Perform maintenace and build new additions.",
-        img: "",
+        img: "https://glotacosm.com/img/screens/autoquip.jpg",
         stack: "HTML5, JavaScript, React, Wordpress, PHP, SASS, Node",
         category: ["Professional"],
         built: false,
@@ -67,17 +68,17 @@ class Work extends Component {
         role: "Lead Developer",
         workLink: "https://ofdist.com/",
         descrip: "eCommerce website to send quotes for various office furniture items. Adapted Wordpress theme from mockups to have its look and feel. Integrated fully-functional eCommerce functions.",
-        img: "",
+        img: "https://glotacosm.com/img/screens/ofdist.jpg",
         stack: "HTML5, PHP, WordPress, CSS3, Python, Node",
         category: ["Professional"],
         built: true,
         maintained: true,
       },{
-        title: "Physmodo Coach Analytics App",
-        subline: "",
+        title: "Physmodo",
+        subline: "Coach Analytics App",
         role: "Front-end Developer",
         descrip: "Stylized and programmed React components for an analytics app using Material UI",
-        img: "",
+        img: "https://glotacosm.com/img/screens/physmodo.jpg",
         stack: "HTML5, JavaScript, CSS3, SASS, React, Node",
         category: ["Professional"],
         built: true,
@@ -114,7 +115,7 @@ class Work extends Component {
         subline: "",
         descrip: "Scrapes Reddit images from any public subreddit by a user-specified date range and saves them to your computer.",
         img: "https://i.imgur.com/e2mgH7D.png",
-        stack: "Python, Reddit API",
+        stack: "Python",
         category: ["Freelance", "Fun"],
         repo: "https://github.com/2hands10fingers/Reddit-Image-Scraper-1.0",
         built: true,
@@ -125,7 +126,7 @@ class Work extends Component {
         role: "Freelance Developer / Teacher",
         workLink: "https://ibi.gmu.edu/",
         descrip: "Aided in building this site and taught the Communications Officer how to code and maintain it.",
-        img: "",
+        img: "https://glotacosm.com/img/screens/gmu.jpg",
         stack: "Wordpress, CSS3, PHP, Python, JavaScript",
         category: ["Professional", "Freelance"],
         repo: "",
@@ -139,11 +140,11 @@ class Work extends Component {
     const {built, maintained} = this.state;
     const { type } = this.props
     return (
-      <div 
+      <div
         className={`work--container ${built ? "built" : "maintained"}`}
       >
       <h1>Work</h1>
-      
+
       <MahContext>
         { context => (
           <>
@@ -154,8 +155,8 @@ class Work extends Component {
     </div>
             {this.work().map( (i, index) => {
               console.log(i[context.data.type])
-              if (i[context.data.type] || context.data.type == "") { 
-                
+              if (i[context.data.type] || context.data.type == "") {
+
                 return (
                   <WorkItem
                   key={index}
@@ -171,24 +172,24 @@ class Work extends Component {
                   /> )
                 }
               }
-            )} 
+            )}
         </>
         )}
       </MahContext>
-  
-   
+
+
     <style jsx global>{`
     .modal-main.work {
       background: url(https://glotacosm.com/img/conifer_forest_inner.png);
     }
 
-    .modal-main.work::-webkit-scrollbar { 
+    .modal-main.work::-webkit-scrollbar {
       width: 0;
       height: 0;
   }
-      
+
       .work--thing, .work--thing .b--content{
-        min-height: 254px !important; 
+        min-height: 254px !important;
     }
       .work--container h1 {
         margin-top: 10rem;
@@ -196,7 +197,7 @@ class Work extends Component {
 
 
 
-        
+
       .work--container .workitem--container:nth-child(odd) .workitem--img-text {
         flex-direction: row-reverse;
       }
@@ -266,7 +267,7 @@ class Work extends Component {
         }
       }
 
-      @media screen and (max-width: 567px) { 
+      @media screen and (max-width: 567px) {
         .work--filter {
           flex-direction: column;
         }
@@ -275,8 +276,8 @@ class Work extends Component {
           margin: 1rem 0;
         }
       }
-        
-        
+
+
         `}
         </style>
     </div>
